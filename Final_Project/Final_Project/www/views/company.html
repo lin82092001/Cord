@@ -1,0 +1,47 @@
+﻿<ion-view title="加入">
+    <ion-content>
+        <div class="layout">
+            <table class="table">
+                <tr>
+                    <td>
+                        <label class="item item-input">
+                            <span class="input-label">公司名稱</span>
+                            <input type="text" ng-model="companyCtrl.name">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="button button-positive" ng-click="companyCtrl.login()">加入</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!--<div class="layout" ng-if="accountCtrl.account.id">
+
+            <div class="item">
+                <td>帳戶序號</td>
+                <td class="colon">:</td>
+                <td>{{accountCtrl.account.id}}</td>
+            </div>
+            <div class="item">
+                <td>使用者</td>
+                <td class="colon">:</td>
+                <td>{{accountCtrl.account.name}}</td>
+            </div>
+            <div class="item">
+                <td>餘額</td>
+                <td class="colon">:</td>
+                <td>{{accountCtrl.account.balance}}</td>
+            </div>
+            <div class="item">
+                <td>點數</td>
+                <td class="colon">:</td>
+                <td>{{accountCtrl.account.card}}</td>
+            </div>
+            <button class="button button-positive" ng-click="accountCtrl.logout()">登出</button>
+        </div>-->
+
+    </ion-content>
+</ion-view>

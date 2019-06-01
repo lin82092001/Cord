@@ -1,0 +1,89 @@
+﻿<ion-view title="帳戶加值">
+    <ion-content>
+        <section class="container" ng-click="bonusCtrl.flip();">
+            <div class="fliper" id="cardFliper">
+                <figure class="front">
+                    <div class="message" ng-if="bonusCtrl.message">
+                        {{bonusCtrl.message}}
+                    </div>
+
+                    <div class="layout">
+                        <table class="table">
+                            <div class="list">
+                                <tr>
+                                    <td>
+                                    <a class="item" href="#">餘額:{{bonusCtrl.account.balance}}</a>
+                                    </td>                                                
+                                </tr>
+                            </div>
+                            <tr>
+                                <td>
+                                    <label class="item item-input">
+                                        <span class="input-label">金額</span>
+                                        <input type="number" ng-model="bonusCtrl.amount"
+                                               ng-click="bonusCtrl.stopPropagation($event)"/>
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                        <button class="button button-positive" id="addBalanceButton"
+                                ng-click="bonusCtrl.add();bonusCtrl.stopPropagation($event)">
+                            加值
+                        </button>
+                    </div>
+                </figure>
+
+                <figure class="back">
+
+                    <div class="message" ng-if="bonusCtrl.transactionsSize()===0">
+                        無交易紀錄
+                    </div>
+
+                    <ion-slide-box class="slide-list" show-pager="true" delegate-handle="TransactionSlideBox">
+                        <ion-slide class="slide" ng-repeat="transaction in bonusCtrl.transactions|toArray|orderBy:'-timeStamp'">
+                            <div class="block">
+                                <table class="wide-table">
+                                    <tr>
+                                        <td>交易序號</td>
+                                        <td class="colon">:</td>
+                                        <td>{{transaction.id}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>帳號名稱</td>
+                                        <td class="colon">:</td>
+                                        <td>{{transaction.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>前期餘額</td>
+                                        <td class="colon">:</td>
+                                        <td>{{transaction.oldBalance}}</td>
+                                    </tr>
+                                    <tr ng-if="transaction.depositAmount">
+                                        <td>加值金額</td>
+                                        <td class="colon">:</td>
+                                        <td>{{transaction.depositAmount}}</td>
+                                    </tr>
+                                    <tr ng-if="transaction.withdrawAmount">
+                                        <td>消費金額</td>
+                                        <td class="colon">:</td>
+                                        <td>{{transaction.withdrawAmount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>本期餘額</td>
+                                        <td class="colon">:</td>
+                                        <td>{{transaction.balance}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>交易時間</td>
+                                        <td class="colon">:</td>
+                                        <td style="font-size:16px">{{transaction.timeStamp | stampFormat}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </ion-slide>
+                    </ion-slide-box>
+                </figure>
+             </div>
+         </section>
+    </ion-content>
+</ion-view>

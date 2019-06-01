@@ -1,0 +1,57 @@
+<ion-view title="票券">
+	<ion-content>
+		<section class="container" ng-click="couponCtrl.flip()">
+			<div class="fliper" id="couponFliper">
+				<figure class="front">
+					
+					<div class="message" ng-if="!couponCtrl.account.id">
+						請登入
+					</div>
+					
+					<div class="message" ng-if="couponCtrl.account.id && !(couponCtrl.coupons | couponFliper:false)[0]">
+						請購券
+					</div>
+					
+					<ion-slide-box class="slide-list" show-pager="true" delegate=handle="CouponUnUsedSlideBox">
+						<ion-slide class="slide" ng-repeat="coupon in couponCtrl.coupons | couponFliper:false |
+						orderBy:'-buyStamp'">
+							<div class="layout">
+								<table class="wide-table">
+									<tr>
+										<td>票券序號</td>
+										<td class="colon">:</td>
+										<td>{{coupon.id}}</td>
+									</tr>
+									<tr>
+										<td>票券名稱</td>
+										<td class="colon">:</td>
+										<td>{{coupon.name}}</td>
+									</tr>
+									<tr>
+										<td>票券金額</td>
+										<td class="colon">:</td>
+										<td>{{coupon.price | number}}</td>
+									</tr>
+									<tr>
+										<td>購券時間</td>
+										<td class="colon">:</td>
+										<td style="font-size:16px">{{coupon.buyStamp | stampFormat}}</td>
+									</tr>
+									<tr>
+										<td colspan="3">
+											<botton class="redeemButton"
+											ng-click="couponCtrl.redeem(coupon);couponCtrl.stopPropagation($event)">用券</botton>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</ion-slide>
+					</ion-slide-box>
+					
+				</figure>
+				<figure class="back">
+					<div class="message" ng-if="!(couponCtrl.coupons | couponFliper:false)[0]">
+						無用券紀錄
+					</div>
+				</figure>
+</ion-view>

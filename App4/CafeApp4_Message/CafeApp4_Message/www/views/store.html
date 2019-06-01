@@ -1,0 +1,32 @@
+﻿<ion-view title="購券">
+    <ion-content>
+        <ion-slide-box class="slide-list" show-pager="true" delegate-handle ="ProductSlideBox">
+          <ion-slide class="slide" ng-repeat="product in storeCtrl.products">
+             <div class="layout">
+               <table class="table">
+                 <tr>
+                   <td>商品序號</td>
+                   <td class="colon">:</td>
+                   <td>{{product.id}}</td>
+                 </tr>
+                 <tr>
+                   <td>商品名稱</td>
+                    <td class="colon">:</td>
+                    <td>{{product.name}}</td>
+                 </tr>
+                 <tr>
+                    <td>商品金額</td>
+                    <td class="colon">:</td>
+                    <td>{{product.price | number}}</td>
+                 </tr>
+                 <tr>
+                    <td colspan="3">
+                      <button class="buyButton" ng-click="storeCtrl.buy(product)">購買</button>
+                    </td>
+                 </tr>
+                </table>
+               </div>
+             </ion-slide>
+         </ion-slide-box>
+    </ion-content>
+</ion-view>

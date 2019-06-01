@@ -1,0 +1,47 @@
+angular.module('CafeApp4_Message').factory('ProductManager', function ($indexedDB, $q) {
+	
+	var products={};
+	
+	return{
+		load:function(){
+		    var deferred = $q.defer();
+
+			$indexedDB.openStore('Product',function(store){
+				store.getAll().then(function(items){
+				    if (items.length === 0) {
+						deferred.resolve();
+						return;
+					}
+					
+					items.forEach(function(item){
+						products[item.id]=item;
+					});
+					
+					deferred.resolve();
+				});
+			});
+			
+			return deferred.promise;
+		},
+
+		add:function(product){
+			if(!products[product.id]){
+				$indexedDB.openStore('Product',function(store){
+					store.insert(product);
+				});
+				products[product.id]=product;
+			}
+		},
+
+		list:function(){
+			return products;
+		},
+
+		clear:function(){
+			$indexedDB.openStore('Product',function(store){
+					store.clear();
+				});
+			products={};
+		}
+	};
+});

@@ -1,0 +1,61 @@
+﻿<ion-view title="登入">
+    <ion-content>
+        <div ng-if="!accountCtrl.account.id">
+            <div class="layout">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <label class="item item-input">
+                                <span class="input-label">帳號</span>
+                                <input type="text" ng-model="accountCtrl.name">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="item item-input">
+                                <span class="input-label">密碼</span>
+                                <input type="password" ng-model="accountCtrl.pswd">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="button button-positive" ng-click="accountCtrl.login()">登入</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div ng-if="accountCtrl.account.id">
+            <div class="list item">
+                <div class="item">
+                    <td>帳戶序號</td>
+                    <td class="colon">:</td>
+                    <td>{{accountCtrl.account.id}}</td>
+                </div>
+                <div class="item">
+                    <td>使用者</td>
+                    <td class="colon">:</td>
+                    <td>{{accountCtrl.account.name}}</td>
+                </div>
+                <div class="item">
+                    <td>餘額</td>
+                    <td class="colon">:</td>
+                    <td>{{accountCtrl.account.balance|number}}</td>
+                </div>
+                <div class="item">
+                    <td>點數</td>
+                    <td class="colon">:</td>
+                    <td>{{accountCtrl.account.card|number}}</td>
+                </div>
+                <table class="table">
+                    <td>
+                        <button class="button button-positive" ng-click="accountCtrl.logout()">登出</button>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

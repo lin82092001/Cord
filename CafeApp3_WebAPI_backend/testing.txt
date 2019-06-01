@@ -1,0 +1,56 @@
+Content-Type:application/json
+
+http://localhost:3000/CafeApi/getProducts
+
+http://localhost:3000/CafeApi/loginAccount
+{
+	"name":"Ben"
+}
+
+http://localhost:3000/CafeApi/getTransactions?accountId=1
+
+http://localhost:3000/CafeApi/getCoupons?accountId=1
+
+http://localhost:3000/CafeApi/addTransaction
+{
+	"accountId":1,
+	"amount":100
+}
+
+http://localhost:3000/CafeApi/buyCoupon
+{
+	"accountId":1,
+	"productId":1
+}
+
+http://localhost:3000/CafeApi/redeemCoupon
+{
+	"couponId":1,
+}
+
+==================================================
+
+http://localhost:3000/CardApi/getProducts
+
+http://localhost:3000/CardApi/loginAccount
+{
+	"name":"apps12",
+	"pswd":"1234"
+}
+
+http://localhost:3000/CardApi/getTransactions?accountId=2
+
+http://localhost:3000/CardApi/getCards?accountId=2
+
+http://localhost:3000/CardApi/addTransaction
+{
+	"accountId":2,
+	"amount":1
+}
+
+http://localhost:3000/CardApi/buyCard
+{
+	"accountId":2,
+	"productId":1,
+	"card":1
+}

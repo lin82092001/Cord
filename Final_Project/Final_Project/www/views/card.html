@@ -1,0 +1,57 @@
+﻿<ion-view title="商品">
+    <ion-content>
+        <section class="container" ng-click="couponCtrl.flip()">
+            <div class="fliper" id="cardFliper">
+                <figure class="front">
+
+                    <div class="message" ng-if="!couponCtrl.account.id">
+                        請登入
+                    </div>
+
+                    <div class="message" ng-if="couponCtrl.account.id && !(couponCtrl.coupons | couponFilter:false)[0]">
+                        請購點
+                    </div>
+
+                    <ion-slide-box class="slide-list" show-pager="true" delegate-handle="CouponUnUsedSlideBox">
+                        <ion-slide class="slide" ng-repeat="coupon in couponCtrl.coupons | couponFilter:false |
+						orderBy:'-buyStamp'">
+                            <div class="layout">
+                                <table class="wide-table">
+                                    <tr>
+                                        <td>票券序號</td>
+                                        <td class="colon">:</td>
+                                        <td>{{coupon.id}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>票券名稱</td>
+                                        <td class="colon">:</td>
+                                        <td>{{coupon.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>票券金額</td>
+                                        <td class="colon">:</td>
+                                        <td>{{coupon.price | number}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>購券時間</td>
+                                        <td class="colon">:</td>
+                                        <td style="font-size:16px">{{coupon.buyStamp | stampFormat}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <button class="redeemButton"
+                                                    ng-click="couponCtrl.redeem(coupon);couponCtrl.stopPropagation($event)">
+                                                用券
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </ion-slide>
+                    </ion-slide-box>
+                </figure>
+            </div>
+        </section>                  
+                
+    </ion-content>
+</ion-view>

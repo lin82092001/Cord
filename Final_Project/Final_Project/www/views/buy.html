@@ -1,0 +1,50 @@
+﻿<ion-view title="購買">
+    <ion-content>
+        <section class="container" ng-click="buyCtrl.flip();">
+            <div class="fliper" id="buyFliper">
+                <figure class="front">
+                    <div class="layout">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <label class="item item-input">
+                                        <span class="input-label">點數種類</span>
+                                        <input type="text" ng-model="product.id" ng-click="buyCtrl.stopPropagation($event)">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="item item-input">
+                                        <span class="input-label">點數額度</span>
+                                        <input type="number" ng-model="buyCtrl.card" ng-click="buyCtrl.stopPropagation($event)">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="button button-positive buyButton" ng-click="buyCtrl.buy(product);buyCtrl.stopPropagation($event)">購買</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </figure>
+
+                <figure class="back">
+                    <div class="list item">
+                        <div class="item">
+                            <td>點數種類</td>
+                            <td class="colon">:</td>
+                            <td>{{product.id}}</td>
+                        </div>
+                        <div class="item">
+                            <td>點數</td>
+                            <td class="colon">:</td>
+                            <td>{{buyCtrl.card|number}}</td>
+                        </div>
+                    </div>
+                </figure>
+            </div>
+        </section>
+    </ion-content>
+</ion-view>
